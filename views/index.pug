@@ -1,0 +1,33 @@
+include mixins.pug
+
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    block head
+      title #{title ? `${title} • ` : ""}Licence manager
+    link(rel='stylesheet' href='/css/index.css')
+  body
+    header(role="banner")
+      .title: a(href="/") Licence manager
+      nav(aria-label="Licence & authorisation manager")
+        ul(role="menubar" aria-label="Licence & authorisation manager")
+          li(role="none"): a(role="menuitem" href="/users") Users
+          li(role="none"): a(role="menuitem" href="/licences") Licences
+          if session && session.currentUser
+            //- TODO: this is invisible to screenreaders
+            li(role="menuitem")= session.currentUser.full_name
+            li(role="none"): a(role="menuitem" href="/logout") Logout
+          else
+            li(role="none"): a(role="menuitem" href="/login") Login
+    main
+      block main
+    //- TODO: remove footer?
+    //- footer.info
+    //-   | This is a footer, we probably don't need it
+    // Scripts here. Don't remove ↓
+    //-script(src='node_modules/todomvc-common/base.js')
+    //-script(src='js/app.js')
+    //- TODO: replace with vendored versions
+    script(src='https://unpkg.com/htmx.org@1.3.1')

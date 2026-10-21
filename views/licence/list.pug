@@ -1,0 +1,33 @@
+extends ../index
+
+prepend head
+  - const title = "Licences"
+  if newLicence
+    meta(http-equiv="refresh" content="0;url=?")
+
+block main
+  h1 Licence Management
+  table
+    tr
+      th Licence ID
+      th Name
+      //- TODO: files maybe
+      th Actions
+    each licence in licences
+      tr(class=`${licence.id === newLicence ? 'new' : ''}`)
+        td #{licence.uri}
+        td #{licence.name}
+        //- td
+          //- +action("Delete", `/licences/${licence.id}`, "delete")
+        td: +action("View", `View licence`, `/licences/${licence.id}`, "get")
+
+    else
+      tr: td(colspan=3) There are no licences.
+    tr: td(colspan=3 )
+      +popover("create-licence", "+ new thing-y")
+        form(method="post" action=`/licences`)
+          label ID (must be a URL)
+            input(type="url" name="uri")
+          label Name
+            input(type="text" name="name")
+          button Submit

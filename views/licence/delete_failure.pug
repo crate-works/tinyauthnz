@@ -1,0 +1,10 @@
+extends ../index
+
+prepend head
+  - const title = "Deleting..."
+  meta(http-equiv="refresh" content="5;url=/licences")
+  link(rel='stylesheet' href='/css/loading.css')
+
+block main
+  | Could not delete licence
+  pre #{msg}

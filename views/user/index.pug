@@ -1,0 +1,38 @@
+extends ../index
+
+block main
+  h1 Account details
+  table.account_details
+    tr
+      th Name
+      td= user.full_name
+    tr
+      th Username
+      td= user.username
+  h2 Licences
+  ul
+    each licence in licences
+      //- TODO: file viewer etc etc
+      li: a(href=`/licences/${licence.id}`)= licence.name
+        small= `(${licence.uri})`
+    else
+      p This user has no licences.
+  if applications && applications.length
+    h2 Pending applications (#{applications.length})
+    ul.applications
+      each application in applications
+        li: div
+          div(style="display:flex")
+            | #{application.name} (#{application.uri})
+            button(aria-label="Approve") ✔ approve
+            button(aria-label="Deny") ✘ deny
+          if application.text
+            details
+              summary application details
+              p= application.text
+          else
+            div Did not fill out the application form.
+  h2 Actions
+  .actions
+    +action("Delete account", `Delete ${user.full_name}'s account`, `/users/${user.id}`, "delete")
+    +action("Reset password", `Reset ${user.full_name}'s password`, `/users/${user.id}/password-reset`)

@@ -1,0 +1,121 @@
+html,
+body {
+  margin: 0;
+}
+
+body {
+  /* TODO: include better font */
+  font-family: "Menlo";
+}
+
+h1 {
+  font-size: 1.3em;
+}
+h2 {
+  font-size: 1.1em;
+}
+
+button {
+  font-size: 1em;
+}
+
+main {
+  height: 60vh;
+  margin: 2em;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px gray solid;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 2em;
+}
+nav ul {
+  display: flex;
+  justify-content: end;
+  gap: 2em;
+
+  list-style: none;
+}
+
+label textarea {
+  display: block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+dt {
+  font-weight: bold;
+}
+
+ul {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+th,
+td {
+  padding: 4px;
+  border: 1px solid black;
+}
+
+tr.new {
+  background: yellow;
+  animation: background-fade 3s forwards;
+}
+
+@keyframes background-fade {
+  99% {
+    background: initial;
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+label input,
+label textarea {
+  display: block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.applications div {
+  display: inline-block;
+  vertical-align: first;
+}
+
+.account_details {
+  width: auto;
+  border: none;
+}
+.account_details th,
+.account_details td {
+  border: none;
+}
+.account_details th {
+  text-align: right;
+}
+
+details {
+  margin-left: 1em;
+}
+details summary {
+  margin-left: -1em;
+}

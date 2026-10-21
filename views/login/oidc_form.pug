@@ -1,0 +1,12 @@
+extends ../index
+
+block main
+  h1 Login page
+  form(method="post" action=`/interaction/${uid}/login`)
+    label Username
+      input(type="text" name="username")
+    label Password
+      input(type="password" name="password")
+    button(type="button" popovertarget="forgot-password") Forgot your password?
+    div#forgot-password(popover) #{forgotPasswordHelp}
+    button Login

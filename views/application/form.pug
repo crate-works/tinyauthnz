@@ -1,0 +1,9 @@
+extends ../index
+
+block main
+  h1 Licence application
+  p Please fill out the below form to apply for access to #{`'${licence.name}'` || "this licence"}.
+  form(method="post" action=`/apply/${licence.id}`)
+    label #{question || "Please give some information about who you are and why you want to access the licenced data:"}
+      textarea(name="applicationText")
+    button Apply

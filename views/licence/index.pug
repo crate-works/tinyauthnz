@@ -1,0 +1,16 @@
+extend ../index
+
+//- TODO: make this nicer
+block main
+  p= licence.uri
+  p= licence.name
+  //- TODO: add list of users with this licence
+  //- TODO: add actions
+  each user in users
+    li: a(href=`/users/${user.id}`)= user.full_name
+  else
+    | No users have this licence.
+  h2 Actions
+  .actions
+    +action("Grant", `Grant user ${licence.name}`, `/licences/${licence.id}/grant`, "get")
+    +action("Delete", `Delete ${licence.name}`, `/licences/${licence.id}`, "delete")

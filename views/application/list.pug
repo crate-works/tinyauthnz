@@ -1,0 +1,35 @@
+extends ../index
+
+prepend head
+  - const title = "Applications"
+  if newApplication
+    meta(http-equiv="refresh" content="0;url=?")
+
+block main
+  h1 Application Management
+  table
+    tr
+      th User
+      th Application
+      //- TODO: files maybe
+      th Actions
+    each application in applications
+      tr(class=`${application.id === newApplication ? 'new' : ''}`)
+        td #{application.uri}
+        td #{application.name}
+        td: .actions
+            +action("View", `/applications/${application.id}`, "get")
+            +action("Approve", `/applications/${application.id}`)
+              input(type="hidden" name="_method" value=method)
+            +action("Deny", `/applications/${application.id}`, "delete")
+    else
+      tr: td(colspan=3) There are no applications.
+    tr: td(colspan=3 )
+      +popover("create-application", "+ new thing-y")
+        form(method="post" action=`/applications`)
+          //- TODO: these should be dropdowns I guess
+          label ID (must be a URL)
+            input(type="url" name="id")
+          label Name
+            input(type="text" name="name")
+          button Submit

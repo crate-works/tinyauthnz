@@ -1,0 +1,20 @@
+mixin popover(id, label, ariaLabel)
+  button(type="button" popovertarget=id aria-label=ariaLabel) #{label}
+  div(id=id popover)
+    button(popovertarget=id popovertargetaction="hide" aria-label="Close popup")
+      | x
+    block
+
+mixin action(label, ariaLabel, url, method)
+  if method === "get"
+    form(method="get" action=url)
+      if block
+        block
+      button(aria-label=ariaLabel)= label
+  else
+    form(method="post" action=url)
+      if method
+        input(type="hidden" name="_method" value=method)
+      if block
+        block
+      button(aria-label=ariaLabel)= label
