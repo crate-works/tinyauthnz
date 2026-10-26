@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Macos file system cruft
+.DS_Store
